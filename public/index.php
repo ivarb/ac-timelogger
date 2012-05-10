@@ -69,7 +69,6 @@ if (count($_POST)) {
                     if ($pr['id'] == $p['p']) {
                         $s = 'selected="selected"';
                     }
-                    echo $s;
                     echo "<option value=\"{$pr['id']}\" $s>{$pr['name']}</option>";
                 }
             ?>
