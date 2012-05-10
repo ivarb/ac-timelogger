@@ -33,6 +33,11 @@ if (count($_POST)) {
             $error = 'Could send request, please check all form fields.';
         } else {
             $succes = 'Time record saved.';
+
+            // Reset some values
+            $p['ti'] = '0.25';
+            $p['b']  = '';
+            $p['t']  = '';
         }
     }
 }
