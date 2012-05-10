@@ -11,4 +11,4 @@
 
 ## Known Bugs
 
- * Ticket integration doesn't work yet
+(just none :))
