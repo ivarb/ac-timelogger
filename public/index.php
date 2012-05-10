@@ -64,7 +64,7 @@ if (count($_POST)) {
         <p class="help-block">Use this to log time for projects, or individual tickets, in a fast and simple way.</p>
     <div>
         <br />
-        <select name="project">
+        <select name="project" id="projects">
             <option value="">- select a project -</option>
             <?php
             $projects = $oApi->get('projects');
@@ -99,6 +99,7 @@ if (count($_POST)) {
         </a>
         <br clear="all" />
     </div>
+    <div id="#tickets">&nbsp;</div>
     </form>
 </body>
 </html>
