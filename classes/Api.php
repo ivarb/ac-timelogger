@@ -37,7 +37,6 @@ class Api
     public function logTime($userId, $projectId, $time, $desc, $date, $billable = 1, $ticketId = false)
     {
         if (empty($userId) || empty($time) || empty($date) || empty($projectId) || empty($desc)) {
-            var_dump(func_get_args());
             return false;
         }
 
@@ -52,12 +51,12 @@ class Api
         }
 
         $params = array(
-            'submitted'         => 'submitted', // Need this for active collab
-            'time[value]'       => $time,
-            'time[user_id]'     => $userId,
-            'time[record_date]' => $date,
-            'time[body]'        => '',
-            'time[billable_status]'            => (!empty($billable) ? 1 : 0)
+            'submitted'             => 'submitted', // Need this for active collab
+            'time[value]'           => $time,
+            'time[user_id]'         => $userId,
+            'time[record_date]'     => $date,
+            'time[body]'            => '',
+            'time[billable_status]' => (!empty($billable) ? 1 : 0)
         );
 
         // Add optional
@@ -67,7 +66,6 @@ class Api
         if (!empty($ticketId)) {
             $params['time[parent_id]'] = $ticketId;
         }
-        var_dump($params);
 
         // Call api
         $res = $this->read(
@@ -103,6 +101,7 @@ class Api
         // Set url
         $url = "{$this->getUrl()}?token={$this->getKey()}&format={$this->getFormat()}&path_info=$path";
 
+        // Curl on post, otherwise: 400 Bad Request X_x
         if ($method == 'POST') {
             $curl;
             $ch = curl_init($url);

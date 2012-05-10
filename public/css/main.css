@@ -1,0 +1,15 @@
+input, textarea, select, .uneditable-input {
+    width: auto;
+}
+body {
+  background-color: #EAE8E8;
+}
+#log {
+    margin: 0px auto;
+    padding: 10px;
+    width: 520px;
+}
+#log #submit {
+    float: right;
+    margin-right: 10px;
+}
