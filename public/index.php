@@ -61,8 +61,7 @@ if (count($_POST)) {
 <body>
     <form id="log" method="POST" action="" class="well">
         <h2>Active Collab - Simple Time Logger</h2>
-        <p class="help-block">Use to log time on projects, or ticket inside projects in a fast simple way.</p>
-
+        <p class="help-block">Use this to log time for projects, or individual tickets, in a fast and simple way.</p>
     <div>
         <br />
         <select name="project">
