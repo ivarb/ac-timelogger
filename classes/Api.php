@@ -63,7 +63,7 @@ class Api
             $params['time[body]'] = $desc;
         }
         if (!empty($ticketId)) {
-            $params['time[parent_id]'] = $ticketId;
+            $params['time[parent_id]'] = $this->getRealTicketId($projectId, $ticketId);
         }
 
         // Call api
@@ -79,50 +79,69 @@ class Api
         return json_decode($res);
     }
 
+    private function getRealTicketId($projectId, $ticketId)
+    {
+        $res = $this->read("projects/$projectId/tickets");
+        if ($res !== false) {
+            $ticket = json_decode($res, true);
+            foreach ($ticket as $t) {
+                if ($t['ticket_id'] == $ticketId) {
+                    return $t['id'];
+                }
+            }
+        }
+        return '';
+    }
+
     private function read($path = 'projects', $method = 'GET', array $params = array())
     {
         if (!is_string($path) || empty($path)) {
             return false;
         }
+        // Build params
         $params = http_build_query($params);
-        $opts = array(
-            'http' => array(
-                'method'  => $method,
-                //'header'  => "Content-type: application/x-www-form-urlencoded\r\nContent-Length: " . strlen($params) . "\r\n",
-                'content' => $params
-
-            )
-        );
-
-        // Create
-        $context = stream_context_create($opts);
 
         // Set url
         $url = "{$this->getUrl()}?token={$this->getKey()}&format={$this->getFormat()}&path_info=$path";
 
-        // Curl on post, otherwise: 400 Bad Request X_x
-        if ($method == 'POST') {
-            $curl;
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Method based
+        switch ($method)
+        {
+            default:
+                $opts = array(
+                    'http' => array(
+                        'method'  => $method
+                    )
+                );
 
-            $response = curl_exec($ch);
-            curl_close($ch);
-            if (!empty($response)) {
-                return $response;
-            }
+                // Create
+                $context = stream_context_create($opts);
+
+                // Check HTTP STATUS CODE in headers for GET
+                $headers = get_headers($url);
+                if ($this->goodHeaders($headers) === false) {
+                     return false;
+                }
+
+                // Read
+                return file_get_contents($url, false, $context);
+                break;
+
+            case 'POST':
+                // Curl on post, otherwise: 400 Bad Request X_x
+                $curl;
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                $response = curl_exec($ch);
+                curl_close($ch);
+                if (!empty($response)) {
+                    return $response;
+                }
+                break;
         }
-
-        // Check HTTP STATUS CODE in headers for GET
-        $headers = get_headers($url);
-        if ($this->goodHeaders($headers) === false) {
-             return false;
-        }
-
-        // Read
-        return file_get_contents($url, false, $context);
     }
 
     private function goodHeaders(array $headers, $protocol = 'HTTP/1.1')
