@@ -87,11 +87,12 @@ if (count($_POST)) {
             echo "<p class=\"alert alert-success\">$succes</p>";
         }
         ?>
+        <input type="submit" name="fake" value="fake" style="position:absolute;left:-9999px;width:0px;height:0px;">
+
         <a class="btn btn-success" id="submit" href="#">
         <i class="icon-time icon-white"></i>
         Log Time
         </a>
-        <input type="submit" name="fake" value="fake" style="width:0px;height:0px;/>
         <br clear="all" />
     </div>
     </form>
