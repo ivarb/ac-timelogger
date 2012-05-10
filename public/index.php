@@ -30,9 +30,9 @@ if (count($_POST)) {
             (!empty($p['t']) ? $p['t'] : false)
         );
         if ($res === false) {
-            $error = 'Verzenden niet gelukt, controleer de velden';
+            $error = 'Could send request, please check all form fields.';
         } else {
-            $succes = 'Tijd opgeslagen';
+            $succes = 'Time record saved.';
         }
     }
 }
@@ -54,13 +54,13 @@ if (count($_POST)) {
 </head>
 <body>
     <form id="log" method="POST" action="" class="well">
-        <h2>Angry Bytes - Uren registratie</h2>
-        <p class="help-block">Gebruik dit formulier om uren te registreren op projecten, of tickets binnen projecten op Active Collab</p>
+        <h2>Active Collab - Simple Time Logger</h2>
+        <p class="help-block">Use to log time on projects, or ticket inside projects in a fast simple way.</p>
 
     <div>
         <br />
         <select name="project">
-            <option value="">- selecteer een project -</option>
+            <option value="">- select a project -</option>
             <?php
             $projects = $oApi->get('projects');
                 foreach($projects as $pr) {
@@ -77,8 +77,8 @@ if (count($_POST)) {
         <!-- Fields -->
         <input name="record_date" size="10" type="text" value="<?php echo $p['d']; ?>" />&nbsp;
         <input name="time" type="text" size="4" value="<?php echo $p['ti']; ?>" />&nbsp;&nbsp;
-        <input name="body" placeholder="Omchrijving..." type="text" style="width:350px;"  value="<?php echo $p['b']; ?>" />&nbsp;&nbsp;
-        <label class="checkbox"><input type="checkbox" name="is_billable" value="1" <?php echo $p['bc']; ?> />Billable?</label>
+        <input name="body" placeholder="Task description..." type="text" style="width:350px;"  value="<?php echo $p['b']; ?>" />&nbsp;&nbsp;
+        <label class="checkbox"><input type="checkbox" name="is_billable" value="1" <?php echo $p['bc']; ?> />Billable</label>
         <?php
         if (isset($error) && $error !== false) {
             echo "<p class=\"alert alert-error\">$error</p>";
