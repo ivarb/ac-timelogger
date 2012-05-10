@@ -23,7 +23,7 @@ $(document).ready(function() {
         */
 
         // Time hide alert
-        setTimeout("$('.alert-success').fadeOut('slow')", 1000);
+        // setTimeout("$('.alert-success').fadeOut('slow')", 1000);
     } catch (e) {
         // BooBoo :'(
     }

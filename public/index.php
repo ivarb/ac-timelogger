@@ -32,7 +32,7 @@ if (count($_POST)) {
         if ($res === false) {
             $error = 'Could send request, please check all form fields.';
         } else {
-            $succes = 'Time record saved.';
+            $succes = "<strong>Time record saved</strong> - ${p['ti']} hours @ ${p['b']} on ${p['d']}";
 
             // Reset some values
             $p['ti'] = '0.25';
