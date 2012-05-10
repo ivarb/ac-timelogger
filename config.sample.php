@@ -1,7 +1,7 @@
 <?php
 // Api secrets
 $api = array(
-    'key'     => '173-AqNcjUxOR6IHiIBq5CM0JlyqY8BBOBKRd7ezBDYR',
-    'url'     => 'http://projects.angrybytes.com/public/api.php',
-    'user_id' => 173
+    'key'     => '{user-api-key}', // See active collab > user settings > api
+    'url'     => 'http://activecollab.example.com/api.php',
+    'user_id' => {userid} // See active collab > user settings
 );
