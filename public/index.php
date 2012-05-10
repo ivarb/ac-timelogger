@@ -78,7 +78,7 @@ if (count($_POST)) {
         <input name="record_date" size="10" type="text" value="<?php echo $p['d']; ?>" />&nbsp;
         <input name="time" type="text" size="4" value="<?php echo $p['ti']; ?>" />&nbsp;&nbsp;
         <input name="body" placeholder="Omchrijving..." type="text" style="width:350px;"  value="<?php echo $p['b']; ?>" />&nbsp;&nbsp;
-        <label class="checkbox"><input type="checkbox" name="is_billable" value="1" <?php echo $p['bc']; ?> />&nbsp; Billable?</label>
+        <label class="checkbox"><input type="checkbox" name="is_billable" value="1" <?php echo $p['bc']; ?> />Billable?</label>
         <?php
         if (isset($error) && $error !== false) {
             echo "<p class=\"alert alert-error\">$error</p>";
