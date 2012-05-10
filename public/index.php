@@ -46,11 +46,12 @@ if (count($_POST)) {
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="/css/main.css" type="text/css" />
 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/main.js"></script>
-
 </head>
 <body>
     <form id="log" method="POST" action="" class="well">
