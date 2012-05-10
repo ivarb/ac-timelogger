@@ -1,2 +1,8 @@
 Active Collab API integration
 
+Intallation:
+- fork
+- clone repo
+- Execute "$ cp config.sample.php config.php"
+- Adjust api settings in `config.php`
+- Profit :)

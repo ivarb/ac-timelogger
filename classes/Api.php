@@ -1,6 +1,5 @@
 <?php
-//TODO ticket id
-//http://www.activecollab.com/docs/manuals/developers/api/time#add-time-record
+// http://www.activecollab.com/docs/manuals/developers/api/time#add-time-record
 class Api
 {
     private $_key;
