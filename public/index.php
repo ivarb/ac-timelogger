@@ -92,6 +92,7 @@ if (count($_POST)) {
         <i class="icon-time icon-white"></i>
         Log Time
         </a>
+        <input type="submit" name="fake" value="fake" style="width:0px;height:0px;/>
         <br clear="all" />
     </div>
     </form>
