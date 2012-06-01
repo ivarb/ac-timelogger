@@ -72,7 +72,7 @@ if (count($_POST)) {
             <?php
             $projects = $oApi->get('projects');
             foreach($projects as $pr) {
-            if ($pr['status'] !== 'active') {continue;}
+    //            if ($pr['status'] !== 'active') {continue;}
                     $s = '';
                     if ($pr['id'] == $p['p']) {
                         $s = 'selected="selected"';
