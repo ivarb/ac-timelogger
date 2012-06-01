@@ -7,6 +7,30 @@ $(document).ready(function() {
             $("#log").submit();
         });
 
+        // Project filter
+        var $proj = $('#projects');
+        var $back = $('#projects').find('option');
+        $('input[name="filter"]').keyup(function(e)
+        {
+            $proj.val($back.css('display','block').val());
+            var val = $(this).val();
+            if (val == '') {
+                return;
+            }
+
+            // regex
+            var reg = new RegExp(val, "i");
+            $proj.find('option').filter(function(i)
+            {
+                var $t = $(this);
+                if (!$t.hasClass('default') && $t.html().match(reg) === null) {
+                    $t.css('display', 'none');
+                } else {
+                    $proj.val($t.val());
+                }
+            });
+        });
+
         /*
         // Proj change
         $('#projects').change(function() {

@@ -64,11 +64,15 @@ if (count($_POST)) {
         <p class="help-block">Use this to log time for projects, or individual tickets, in a fast and simple way.</p>
     <div>
         <br />
+        <input name="record_date" size="10" type="text" value="<?php echo $p['d']; ?>" />&nbsp;
+        <br /><br />
+        <input type="text" name="filter" size="17" value="" placeholder="Filter projects" />&nbsp;&nbsp;
         <select name="project" id="projects">
-            <option value="">- select a project -</option>
+            <option value="" class="default">- select a project -</option>
             <?php
             $projects = $oApi->get('projects');
-                foreach($projects as $pr) {
+            foreach($projects as $pr) {
+            if ($pr['status'] !== 'active') {continue;}
                     $s = '';
                     if ($pr['id'] == $p['p']) {
                         $s = 'selected="selected"';
@@ -76,10 +80,9 @@ if (count($_POST)) {
                     echo "<option value=\"{$pr['id']}\" $s>{$pr['name']}</option>";
                 }
             ?>
-        </select>&nbsp;&nbsp;
-        <input name="ticket" placeholder="# ticket" size="7" type="text" value="<?php echo $p['t']; ?>" /><br />
+        </select><br />
         <!-- Fields -->
-        <input name="record_date" size="10" type="text" value="<?php echo $p['d']; ?>" />&nbsp;
+        <input name="ticket" placeholder="# ticket" size="7" type="text" value="<?php echo $p['t']; ?>" />&nbsp;&nbsp;
         <input name="time" type="text" size="4" value="<?php echo $p['ti']; ?>" />&nbsp;&nbsp;
         <input name="body" placeholder="Task description..." type="text" style="width:350px;"  value="<?php echo $p['b']; ?>" />&nbsp;&nbsp;
         <label class="checkbox"><input type="checkbox" name="is_billable" value="1" <?php echo $p['bc']; ?> />Billable</label>

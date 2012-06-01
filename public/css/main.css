@@ -13,3 +13,6 @@ body {
     float: right;
     margin-right: 10px;
 }
+#projects {
+    width: 250px;
+}
